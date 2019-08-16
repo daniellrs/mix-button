@@ -1,12 +1,23 @@
 import React, { Component } from 'react'
 
-import ExampleComponent from 'mix-button'
+import MixButton from '../../dist/index'
 
 export default class App extends Component {
+
+  componentDidMount() {
+    document.addEventListener('keydown', e => {
+      console.log(e.keyCode)
+    })
+  }
+
   render () {
     return (
-      <div>
-        <ExampleComponent text='Modern React component module' />
+      <div style={{display: 'flex'}}>
+        <MixButton 
+          style={{width: 80, height: 80, background: '#81b'}}
+          audio={importedSong}
+          shortcut={81}
+        />
       </div>
     )
   }
