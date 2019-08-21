@@ -4,6 +4,7 @@ export default class MixButton extends Component {
   audio = undefined
   continuousInterval = undefined
   playtimeout = undefined
+  definitiveAction = undefined
   
   componentDidMount() {
     this.handleAudio()
@@ -22,6 +23,7 @@ export default class MixButton extends Component {
   }
 
   handleShortcut = () => {
+    if(this.props.shortcut) document.removeEventListener('keydown', this.shortcut)
     if(this.props.shortcut) document.addEventListener('keydown', this.shortcut)
   }
 
@@ -72,15 +74,19 @@ export default class MixButton extends Component {
     this.audio.play()
   }
 
-  onClick = () => {
-    this.playAudio()
-    if(this.props.onClick) this.props.onClick()
+  activeButton = (action) => {
+    return e => {
+      if(!this.definitiveAction) this.definitiveAction = action
+      if(this.definitiveAction === action) this.playAudio()
+      if(this.props[action]) this.props[action](e)
+    }
   }
 
   render() {
     const {element='div', children, audio, continuous, onPlay, onStop, ...rest} = this.props
 
-    rest.onClick = this.onClick
+    rest.onClick = this.activeButton('onClick')
+    rest.onTouchStart = this.activeButton('onTouchStart')
 
     return React.createElement(
       element,
