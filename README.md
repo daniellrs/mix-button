@@ -38,6 +38,8 @@ render () {
 | continuous | boolean | If the audio should play continuously. |
 | onPlay | Function | Triggered when the audio starts. |
 | onStop | Function | Triggered when the audio stops. |
+| element | string | The element that should be rendered (Default is 'div'). |
+
 
 ## License
 
