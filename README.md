@@ -1,30 +1,43 @@
 # mix-button
 
-> 
-
-[![NPM](https://img.shields.io/npm/v/mix-button.svg)](https://www.npmjs.com/package/mix-button) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+This is a library to easily play and configure audio on HTML elements.
 
 ## Install
 
-```bash
-npm install --save mix-button
+```
+npm install mix-button --save
+or
+yarn add mix-button
 ```
 
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import MixButton from 'mix-button'
 
-import MyComponent from 'mix-button'
+import audio from './some-audio.wav'
 
-class Example extends Component {
-  render () {
-    return (
-      <MyComponent />
-    )
-  }
+render () {
+
+  return (
+    <MixButton 
+      audio={audio}
+      style={{width: 50, height: 50}}
+    />
+  )
 }
 ```
+
+## MixButton properties
+
+| Prop       | Type           | Description  |
+| ------------- |:-------------:| ------------- |
+| audio | string | The audio to play when the element is clicked. |
+| shortcut | number | The key code of some key of keyboard to play the audio when pressed. |
+| volume | number | The volume of the audio (between 0-1). |
+| continuous | boolean | If the audio should play continuously. |
+| onPlay | Function | Triggered when the audio starts. |
+| onStop | Function | Triggered when the audio stops. |
 
 ## License
 
