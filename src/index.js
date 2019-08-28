@@ -19,6 +19,7 @@ export default class MixButton extends Component {
   
   componentDidUpdate(prevProps) {
     if(this.props.audio !== prevProps.audio) this.handleAudio()
+    if(this.props.volume !== prevProps.volume) this.handleVolume()
     if(this.props.shortcut !== prevProps.shortcut) this.handleShortcut()
   }
 
@@ -29,6 +30,11 @@ export default class MixButton extends Component {
 
   handleAudio = () => {
     if(this.props.audio) this.audio = new Audio(this.props.audio)
+    if(this.props.volume) this.handleVolume()
+  }
+
+  handleVolume = () => {
+    if(this.audio && this.props.volume) this.audio.volume = this.props.volume
   }
 
   shortcut = e => {
@@ -83,9 +89,9 @@ export default class MixButton extends Component {
   }
 
   render() {
-    const {element='div', children, audio, continuous, onPlay, onStop, ...rest} = this.props
+    const {element='div', children, shortcut, audio, volume, continuous, onPlay, onStop, ...rest} = this.props
 
-    rest.onClick = this.activeButton('onClick')
+    rest.onMouseDown = this.activeButton('onMouseDown')
     rest.onTouchStart = this.activeButton('onTouchStart')
 
     return React.createElement(
