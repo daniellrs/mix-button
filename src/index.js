@@ -89,10 +89,12 @@ export default class MixButton extends Component {
   }
 
   render() {
-    const {element='div', children, shortcut, audio, volume, continuous, onPlay, onStop, ...rest} = this.props
+    const {element='div', children, shortcut, audio, volume, muted, continuous, onPlay, onStop, ...rest} = this.props
 
-    rest.onMouseDown = this.activeButton('onMouseDown')
-    rest.onTouchStart = this.activeButton('onTouchStart')
+    if(!muted) {
+      rest.onMouseDown = this.activeButton('onMouseDown')
+      rest.onTouchStart = this.activeButton('onTouchStart')
+    }
 
     return React.createElement(
       element,

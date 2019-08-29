@@ -39,7 +39,7 @@ render () {
 | onPlay | Function | Triggered when the audio starts. |
 | onStop | Function | Triggered when the audio stops. |
 | element | string | The element that should be rendered (Default is 'div'). |
-
+| muted | boolean | Mute the audio. |
 
 ## License
 
