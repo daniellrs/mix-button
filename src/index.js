@@ -38,7 +38,7 @@ export default class MixButton extends Component {
   }
 
   shortcut = e => {
-    if(e.keyCode === this.props.shortcut) this.playAudio()
+    if(!this.props.muted && e.keyCode === this.props.shortcut) this.playAudio()
   }
 
   playAudio = () => {
